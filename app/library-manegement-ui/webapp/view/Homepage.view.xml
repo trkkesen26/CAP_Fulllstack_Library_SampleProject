@@ -1,0 +1,23 @@
+<mvc:View controllerName="com.ndbs.ui.librarymanegementui.controller.Homepage"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns="sap.m">
+    <Page id="page"
+        title="{i18n>title}">
+        <f:ShellBar title="Sales Report"
+            secondTitle="Homepage"
+            homeIcon="./img/NTT-DATA-logo-new_Color-1.png">
+            <f:menu>
+                <Menu>
+                    <MenuItem text="Sales"
+                        icon="sap-icon://currency"
+                        press="onNavToView('RouteSalePage')" />
+                </Menu>
+            </f:menu>
+            <f:profile>
+                <Avatar initials="UI" />
+            </f:profile>
+        </f:ShellBar>
+    </Page>
+</mvc:View>

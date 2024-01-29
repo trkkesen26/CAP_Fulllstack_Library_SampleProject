@@ -1,0 +1,20 @@
+{
+  "xsappname": "Library-Cap-Project",
+  "tenant-mode": "dedicated",
+  "description": "Nice fullstack app",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }
+  ]
+}

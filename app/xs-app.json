@@ -1,0 +1,11 @@
+{
+  "authenticationMethod": "route",
+  "welcomeFile": "app/index.html",
+  "routes": [
+    {
+      "source": "^/odata/v2/library-management/(.*)$",
+      "destination": "backend-api",
+      "csrfProtection": true
+    }
+  ]
+}

@@ -7,12 +7,12 @@ sap.ui.define([
     function (BaseController) {
         "use strict";
 
-        return BaseController.extend("com.ndbs.ui.librarymanegementui.controller.Homepage", {
+        return BaseController.extend("com.ndbs.ui.librarymanegementui.controller.BookSearch", {
             onInit: function () {
-                this.getRouter().getRoute("RouteHomepage").attachPatternMatched(this._onObjectMatched, this);
+                this.getRouter().getRoute("RouteBookSearch").attachPatternMatched(this._onObjectMatched, this);
             },
             _onObjectMatched: function() {
-                let visibilitySettings = this.getModel("visibilityModel").getProperty('/Viewer/Homepage');
+                let visibilitySettings = this.getModel("visibilityModel").getProperty('/Viewer/BookSearch');
                 this.getModel("visibilityModel").setProperty('/Visibility', visibilitySettings);
             },
             onNavToView: function (oEvent) {

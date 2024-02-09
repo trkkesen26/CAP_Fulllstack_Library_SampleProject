@@ -1,0 +1,91 @@
+<mvc:View controllerName="com.ndbs.ui.librarymanegementui.controller.LibraryManagement"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    displayBlock="true">
+    <Page id="LibraryManagement"
+        showHeader="false">
+        <f:ShellBar title="{i18n>title}"
+            secondTitle="{i18n>libraryManagement}"
+            homeIcon="./img/logo1.png"
+            homeIconPressed="onNavToView('RouteLibraryManagement')">
+            <f:menu>
+                <Menu>
+                    <core:Fragment fragmentName="com.ndbs.ui.librarymanegementui.fragments.common.MenuItems"
+                        type="XML" />
+                </Menu>
+            </f:menu>
+        </f:ShellBar>
+        <FlexBox justifyContent="Center"
+            alignItems="Center">
+            <VBox width="95%">
+                <smartFilterBar:SmartFilterBar id="sfbBooks"
+                    entitySet="VBooks"
+                    useProvidedNavigationProperties="true"
+                    enableBasicSearch="true"/>
+                <smartTable:SmartTable id="stBooks"
+                    entitySet="VBooks"
+                    smartFilterId="sfbBooks"
+                    tableType="Table"
+                    enableExport="true"
+                    enableAutoBinding="true"
+                    useVariantManagement="true"
+                    useTablePersonalisation="true"
+                    showFullScreenButton="true"
+                    header="{i18n>booksTable}"
+                    showRowCount="true"
+                    enableAutoColumnWidth="true"
+                    editTogglable="true"
+                    app:useSmartToggle="true"
+                    editToggled=".changeEditted">
+                    <smartTable:customToolbar>
+                        <OverflowToolbar design="Transparent">
+                            <ToolbarSpacer/>
+                            <OverflowToolbarButton icon="sap-icon://add"
+                                press=".onCreateBook"/>
+                            <OverflowToolbarButton icon="sap-icon://delete"
+                                press=".onDeleteBook"/>
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+                    <table:Table id="uiTblBooks"
+                        selectionMode="Single"
+                        alternateRowColors="true"/>
+                </smartTable:SmartTable>
+                <smartFilterBar:SmartFilterBar id="sfbAuthors"
+                    entitySet="VAuthors"
+                    useProvidedNavigationProperties="true"
+                    enableBasicSearch="true"/>
+                <smartTable:SmartTable id="stAuthors"
+                    entitySet="VAuthors"
+                    smartFilterId="sfbAuthors"
+                    tableType="Table"
+                    enableExport="true"
+                    enableAutoBinding="true"
+                    useVariantManagement="true"
+                    useTablePersonalisation="true"
+                    showFullScreenButton="true"
+                    header="{i18n>authorsTable}"
+                    showRowCount="true"
+                    enableAutoColumnWidth="true">
+                    <smartTable:customToolbar>
+                        <OverflowToolbar design="Transparent">
+                            <ToolbarSpacer/>
+                            <OverflowToolbarButton icon="sap-icon://add"
+                                press=".onCreateAuthor"/>
+                            <OverflowToolbarButton icon="sap-icon://delete"
+                                press=".onDeleteAuthor"/>
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+                    <table:Table id="uiTblAuthors"
+                        selectionMode="Single"
+                        alternateRowColors="true"/>
+                </smartTable:SmartTable>
+            </VBox>
+        </FlexBox>
+    </Page>
+</mvc:View>

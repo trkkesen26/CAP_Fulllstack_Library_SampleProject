@@ -1,7 +1,4 @@
-using {
-    managed,
-    Language
-} from '@sap/cds/common';
+using {managed} from '@sap/cds/common';
 
 @assert.range
 type status : String enum {
@@ -14,8 +11,10 @@ entity Books : managed {
     key ID               : UUID;
         name             : String(100) not null;
         editionNumber    : Integer;
-        language         : Language;
-        barcodeNumber    : String(50) not null;
+        languageCode     : Languages:code;
+        toLanguage       : Association to one Languages
+                               on toLanguage.code = languageCode;
+        barcodeNumber    : String(250) not null;
         authorID         : Authors:ID;
         toAuthor         : Association to one Authors
                                on toAuthor.ID = $self.authorID;
@@ -29,15 +28,21 @@ entity Books : managed {
                                on toBookActivities.toBooks = $self;
 }
 
+entity Languages {
+    key code : String(3);
+        text : String(25);
+}
+
 entity Authors {
     key ID        : UUID;
         firstName : String(50);
         lastName  : String(50);
         image     : LargeBinary @Core.MediaType: 'image/jpeg';
         age       : Integer;
-        otoBio    : String(1000);
+        autoBio   : String(1000);
         toBooks   : Association to many Books
                         on toBooks.toAuthor = $self;
+        isAlive   : Boolean;
 }
 
 entity Libraries {
@@ -62,6 +67,7 @@ entity Categories {
 
 entity SubCategories {
     key ID           : UUID;
+        description  : String(50);
         toBooks      : Association to many Books
                            on toBooks.toSubCategories = $self;
         categoryID   : Categories:ID;
@@ -77,6 +83,7 @@ entity BookActivities {
         note       : String(255);
         status     : status;
         bookID     : Books:ID;
+        userMail   : String(255) @Communication.IsEmailAddress;
         toBooks    : Association to one Books
                          on toBooks.ID = $self.bookID;
 }

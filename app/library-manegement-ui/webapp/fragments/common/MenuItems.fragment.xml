@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <MenuItem visible="{visibilityModel>/Visibility/HomepageMenu}"
+        text="{i18n>homepage}"
+        press="onNavToView('RouteHomepage')"
+        icon="sap-icon://home"/>
+    <MenuItem visible="{visibilityModel>/Visibility/BookSearchMenu}"
+        text="{i18n>bookSearch}"
+        press="onNavToView('RouteBookSearch')"
+        icon="sap-icon://browse-folder"/>
+    <MenuItem visible="{visibilityModel>/Visibility/LibraryManagementMenu}"
+        text="{i18n>libraryManagement}"
+        press="onNavToView('RouteLibraryManagement')"
+        icon="sap-icon://building"/>
+</core:FragmentDefinition>

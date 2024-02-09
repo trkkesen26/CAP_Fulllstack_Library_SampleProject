@@ -1,0 +1,24 @@
+{
+    "Visibility": {
+        "HomepageMenu": true,
+        "BookSearchMenu": true,
+        "LibraryManagementMenu": true
+    },
+    "Viewer": {
+        "Homepage": {
+            "HomepageMenu": false,
+            "BookSearchMenu": true,
+            "LibraryManagementMenu": true
+        },
+        "BookSearch": {
+            "HomepageMenu": true,
+            "BookSearchMenu": false,
+            "LibraryManagementMenu": true
+        },
+        "LibraryManagement": {
+            "HomepageMenu": true,
+            "BookSearchMenu": true,
+            "LibraryManagementMenu": false           
+        }
+    }
+}

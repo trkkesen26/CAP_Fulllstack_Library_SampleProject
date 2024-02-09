@@ -1,15 +1,15 @@
-<mvc:View controllerName="com.ndbs.ui.librarymanegementui.controller.Homepage"
+<mvc:View controllerName="com.ndbs.ui.librarymanegementui.controller.BookSearch"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f"
     xmlns="sap.m"
     displayBlock="true">
-    <Page id="Homepage"
+    <Page id="BookSearch"
         showHeader="false">
         <f:ShellBar title="{i18n>title}"
-            secondTitle="{i18n>homepage}"
+            secondTitle="{i18n>bookSearch}"
             homeIcon="./img/logo1.png"
-            homeIconPressed="onNavToView('RouteHomepage')">
+            homeIconPressed="onNavToView('RouteBookSearch')">
             <f:menu>
                 <Menu>
                     <core:Fragment fragmentName="com.ndbs.ui.librarymanegementui.fragments.common.MenuItems"

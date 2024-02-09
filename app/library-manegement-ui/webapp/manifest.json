@@ -23,6 +23,10 @@
           "annotations": [],
           "odataVersion": "2.0"
         }
+      },
+      "visibilitySource": {
+        "uri": "./model/visibility.json",
+        "type": "JSON"
       }
     }
   },
@@ -74,6 +78,14 @@
         "settings": {
           "defaultBindingMode": "TwoWay"
         }
+      },
+      "visibilityModel": {
+        "dataSource": "visibilitySource",
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
       }
     },
     "resources": {
@@ -96,9 +108,23 @@
       "routes": [
         {
           "name": "RouteHomepage",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetHomepage"
+          ]
+        },
+        {
+          "name": "RouteBookSearch",
+          "pattern": "bookSearch",
+          "target": [
+            "TargetBookSearch"
+          ]
+        },
+        {
+          "name": "RouteLibraryManagement",
+          "pattern": "libraryManagement",
+          "target": [
+            "TargetLibraryManagement"
           ]
         }
       ],
@@ -109,6 +135,20 @@
           "clearControlAggregation": false,
           "viewId": "Homepage",
           "viewName": "Homepage"
+        },
+        "TargetBookSearch": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "BookSearch",
+          "viewName": "BookSearch"
+        },
+        "TargetLibraryManagement": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "LibraryManagement",
+          "viewName": "LibraryManagement"
         }
       }
     },

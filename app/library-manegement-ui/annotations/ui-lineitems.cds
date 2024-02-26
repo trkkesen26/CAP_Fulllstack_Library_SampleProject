@@ -11,10 +11,6 @@ annotate service.VBooks @(UI: {
     LineItem       : [
         {
             $Type: 'UI.DataField',
-            Value: ID
-        },
-        {
-            $Type: 'UI.DataField',
             Value: name
         },
         {
@@ -35,21 +31,13 @@ annotate service.VBooks @(UI: {
 annotate service.VAuthors @(UI: {
     SelectionFields: [
         ID,
-        firstName,
-        lastName
+        fullName,
+        isAlive
     ],
     LineItem       : [
         {
             $Type: 'UI.DataField',
-            Value: ID
-        },
-        {
-            $Type: 'UI.DataField',
             Value: fullName
-        },
-        {
-            $Type: 'UI.DataField',
-            Value: authorBook
         },
         {
             $Type: 'UI.DataField',

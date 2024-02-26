@@ -12,6 +12,10 @@ class LibraryManagement extends cds.ApplicationService {
             BookActivities
         }=db.entities("LibraryManagement");
 
+        this.before("CREATE", Authors, (req, res, next) => {
+            req.data.thumbnailUrl = `/odata/v2/library-management/Authors(${req.data.ID})/image`;
+        })
+
         return super.init()
     }
   }

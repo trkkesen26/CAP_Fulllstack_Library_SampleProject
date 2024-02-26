@@ -6,13 +6,13 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:smartForm="sap.ui.comp.smartform"
     xmlns:smartField="sap.ui.comp.smartfield">
-    <Dialog id="diaNewAuthor"
+    <Dialog id="diaEditAuthor"
         showHeader="false">
         <content>
-            <smartForm:SmartForm id="sfNewAuthor"
+            <smartForm:SmartForm id="sfEditAuthor"
                 editTogglable="false"
                 editable="true"
-                title="{i18n>newAuthor}">
+                title="{i18n>editAuthor}">
                 <smartForm:Group>
                     <smartForm:GroupElement>
                         <smartField:SmartField value="{firstName}" />
@@ -31,24 +31,30 @@
                             app:multiLineSettings="{width: '100%', rows: 8}"/>
                     </smartForm:GroupElement>
                     <smartForm:GroupElement>
-                        <upload:UploadSet id="usContentFile"
+                        <upload:UploadSet id="usEditContentFile"
                             instantUpload="false"
                             httpRequestMethod="Put"
-                            uploadCompleted="onFileUploadCompleted"
                             fileTypes="jpeg"
                             mediaTypes="image/jpeg"
-                            mode="None"/>
+                            items="{/Authors}"
+                            mode="None">
+                            <upload:items>
+                                <upload:UploadSetItem fileName="{fileName}"
+                                    visibleEdit="false">
+                                </upload:UploadSetItem>
+                            </upload:items>
+                        </upload:UploadSet>
                     </smartForm:GroupElement>
                 </smartForm:Group>
             </smartForm:SmartForm>
         </content>
         <beginButton>
             <Button text="{i18n>create}"
-                press="onCreateNewAuthor"/>
+                press="onSaveEditAuthor"/>
         </beginButton>
         <endButton>
             <Button text="Close"
-                press="onCloseDialog('_oNewAuthorDialog')"/>
+                press="onCloseDialog('_oEditAuthorDialog')"/>
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

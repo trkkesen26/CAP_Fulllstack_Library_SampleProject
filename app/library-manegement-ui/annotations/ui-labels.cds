@@ -44,14 +44,15 @@ annotate service.Authors with {
 };
 
 annotate service.VAuthors with {
-    ID        @Common.Label: '{i18n>authorID}';
-    firstName @Common.Label: '{i18n>firstName}';
-    lastName  @Common.Label: '{i18n>lastName}';
-    image     @Common.Label: '{i18n>image}';
-    age       @Common.Label: '{i18n>age}';
-    autoBio   @Common.Label: '{i18n>autoBio}';
-    isAlive   @Common.Label: '{i18n>isAlive}';
+    ID         @Common.Label: '{i18n>authorID}';
+    firstName  @Common.Label: '{i18n>firstName}';
+    lastName   @Common.Label: '{i18n>lastName}';
+    image      @Common.Label: '{i18n>image}';
+    age        @Common.Label: '{i18n>age}';
+    autoBio    @Common.Label: '{i18n>autoBio}';
+    isAlive    @Common.Label: '{i18n>isAlive}';
     authorBook @Common.Label: '{i18n>authorBooks}';
+    fullName   @Common.Label: '{i18n>fullName}';
 };
 
 annotate service.VHAuthors with {

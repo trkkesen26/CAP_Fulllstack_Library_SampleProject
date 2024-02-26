@@ -52,11 +52,12 @@
                                 press=".onDeleteBook"/>
                         </OverflowToolbar>
                     </smartTable:customToolbar>
-                    <table:Table id="uiTblBooks"
-                        selectionMode="Single"
+                    <Table id="uiTblBooks"
+                        mode="SingleSelectMaster"
                         alternateRowColors="true"/>
                 </smartTable:SmartTable>
                 <smartFilterBar:SmartFilterBar id="sfbAuthors"
+                    class="sapUiMediumMarginTop"
                     entitySet="VAuthors"
                     useProvidedNavigationProperties="true"
                     enableBasicSearch="true"/>
@@ -79,10 +80,12 @@
                                 press=".onCreateAuthor"/>
                             <OverflowToolbarButton icon="sap-icon://delete"
                                 press=".onDeleteAuthor"/>
+                            <OverflowToolbarButton icon="sap-icon://edit"
+                                press=".onEditAuthor"/>
                         </OverflowToolbar>
                     </smartTable:customToolbar>
-                    <table:Table id="uiTblAuthors"
-                        selectionMode="Single"
+                    <Table id="uiTblAuthors"
+                        mode="SingleSelectMaster"
                         alternateRowColors="true"/>
                 </smartTable:SmartTable>
             </VBox>

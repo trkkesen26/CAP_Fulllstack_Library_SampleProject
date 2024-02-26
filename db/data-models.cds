@@ -1,11 +1,5 @@
 using {managed} from '@sap/cds/common';
 
-@assert.range
-type status : String enum {
-    Taken;
-    Available;
-    Lost
-}
 
 entity Books : managed {
     key ID               : UUID;
@@ -34,15 +28,17 @@ entity Languages {
 }
 
 entity Authors {
-    key ID        : UUID;
-        firstName : String(50);
-        lastName  : String(50);
-        image     : LargeBinary @Core.MediaType: 'image/jpeg';
-        age       : Integer;
-        autoBio   : String(1000);
-        toBooks   : Association to many Books
-                        on toBooks.toAuthor = $self;
-        isAlive   : Boolean;
+    key ID           : UUID;
+        firstName    : String(50);
+        lastName     : String(50);
+        image        : LargeBinary  @Core.MediaType  : 'image/jpeg'  @Core.ContentDisposition.Filename: fileName  @Core.ContentDisposition.Type: 'inline';
+        thumbnailUrl : String;
+        fileName     : String(100);
+        age          : Integer;
+        autoBio      : String(1000) @UI.MultiLineText: true;
+        toBooks      : Composition of many Books
+                           on toBooks.toAuthor = $self;
+        isAlive      : Boolean default true;
 }
 
 entity Libraries {
@@ -81,7 +77,6 @@ entity BookActivities {
         pickupDate : Date not null;
         returnDate : Date;
         note       : String(255);
-        status     : status;
         bookID     : Books:ID;
         userMail   : String(255) @Communication.IsEmailAddress;
         toBooks    : Association to one Books

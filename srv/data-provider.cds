@@ -44,7 +44,10 @@ service LibraryManagement {
 
     entity VAuthors       as
         select from DBAuthors as authors {
-            *,
+            key ID,
+            age,
+            autoBio,
+            isAlive,
             authors.firstName || ' ' || authors.lastName as fullName : String(120),
             toBooks.name as authorBook
         };

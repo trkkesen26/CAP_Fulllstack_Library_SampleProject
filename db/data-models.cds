@@ -15,9 +15,9 @@ entity Books : managed {
         libraryID        : Libraries:ID;
         toLibraries      : Association to one Libraries
                                on toLibraries.ID = $self.libraryID;
-        subCategoriID    : SubCategories:ID;
+        subCategoryID    : SubCategories:ID;
         toSubCategories  : Association to one SubCategories
-                               on toSubCategories.ID = $self.subCategoriID;
+                               on toSubCategories.ID = $self.subCategoryID;
         toBookActivities : Association to many BookActivities
                                on toBookActivities.toBooks = $self;
 }
@@ -33,6 +33,7 @@ entity Authors {
         lastName     : String(50);
         image        : LargeBinary  @Core.MediaType  : 'image/jpeg'  @Core.ContentDisposition.Filename: fileName  @Core.ContentDisposition.Type: 'inline';
         thumbnailUrl : String;
+        displayUrl   : String;
         fileName     : String(100);
         age          : Integer;
         autoBio      : String(1000) @UI.MultiLineText: true;

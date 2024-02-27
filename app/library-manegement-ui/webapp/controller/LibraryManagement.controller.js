@@ -31,6 +31,8 @@ sap.ui.define([
                 oSelectedObject = oSelectedItem.getBindingContext().getObject();
                 oSelectedItemID = oSelectedObject.ID;
 
+                this.getView().getModel("globalJSONModel").setProperty("/selectedAuthor", oSelectedItemID);
+
                 if (!this._oDetailAuthorDialog) {
                     this._oDetailAuthorDialog = Fragment.load({
                         id: oView.getId(),
@@ -44,7 +46,6 @@ sap.ui.define([
                 this._oDetailAuthorDialog.then(function (oValueHelpDialog) {
                     oValueHelpDialog.open();
                     this.byId("sfDetailAuthor").bindElement(`/VAuthors(${oSelectedItemID})`);
-                    this.byId("usDetailContentFile").getBinding("items").filter(new Filter("ID", FilterOperator.EQ, oSelectedItemID));
                 }.bind(this));
             },
             _onObjectMatched: function () {
@@ -346,6 +347,25 @@ sap.ui.define([
             },
             onFileUploadCompleted: function () {
                 this.getView().byId("stAuthors").rebindTable();
+            },
+            onShowAllBooks: function () {
+                let oView = this.getView();
+
+                if (!this._oShowAuthorDialog) {
+                    this._oShowAuthorDialog = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.ndbs.ui.librarymanegementui.fragments.library-management.AuthorShowBooks",
+                        controller: this
+                    }).then(function (oValueHelpDialog) {
+                        oView.addDependent(oValueHelpDialog);
+                        return oValueHelpDialog;
+                    });
+                }
+                
+                this._oShowAuthorDialog.then(function (oValueHelpDialog) {
+                    this.byId("slAuthorBooks").bindElement(`/Authors(${this.getView().getModel("globalJSONModel").getProperty("/selectedAuthor")})`);
+                    oValueHelpDialog.open();
+                }.bind(this));
             }
         });
     });

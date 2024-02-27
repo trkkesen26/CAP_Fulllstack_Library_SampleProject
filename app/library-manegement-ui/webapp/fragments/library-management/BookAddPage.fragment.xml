@@ -30,7 +30,7 @@
                             textInEditModeSource="ValueList" />
                     </smartForm:GroupElement>
                     <smartForm:GroupElement>
-                        <smartField:SmartField value="{subCategoriID}"
+                        <smartField:SmartField value="{subCategoryID}"
                             textInEditModeSource="ValueList" />
                     </smartForm:GroupElement>
                     <smartForm:GroupElement>

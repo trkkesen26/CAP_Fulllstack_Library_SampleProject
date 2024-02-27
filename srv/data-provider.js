@@ -14,6 +14,7 @@ class LibraryManagement extends cds.ApplicationService {
 
         this.before("CREATE", Authors, (req, res, next) => {
             req.data.thumbnailUrl = `/odata/v2/library-management/Authors(${req.data.ID})/image`;
+            req.data.displayUrl = `/odata/v2/library-management/Authors(${req.data.ID})/$value`;
         })
 
         return super.init()

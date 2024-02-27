@@ -1,4 +1,5 @@
-<core:FragmentDefinition xmlns="sap.m"
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:ndc="sap.ndc"
@@ -28,33 +29,21 @@
                     </smartForm:GroupElement>
                     <smartForm:GroupElement>
                         <smartField:SmartField value="{autoBio}"
-                            editable="false"
-                            app:multiLineSettings="{width: '100%', rows: 8}" />
+                            editable="false" />
                     </smartForm:GroupElement>
                     <smartForm:GroupElement>
-                        <Button>
-                            
-                        </Button>
-                        </smartForm:GroupElement>
-                        <smartForm:GroupElement>
-                            <upload:UploadSet id="usDetailContentFile"
-                                instantUpload="false"
-                                httpRequestMethod="Put"
-                                fileTypes="jpeg"
-                                mediaTypes="image/jpeg"
-                                items="{/Authors}"
-                                uploadButtonInvisible="true"
-                                mode="None">
-                                <upload:items>
-                                    <upload:UploadSetItem fileName="{fileName}"
-                                        thumbnailUrl="{thumbnailUrl}"
-                                        visibleRemove="false"
-                                        visibleEdit="false" />
-                                </upload:items>
-                            </upload:UploadSet>
-                        </smartForm:GroupElement>
-                    </smartForm:Group>
-                </smartForm:SmartForm>
-            </content>
-        </Dialog>
-    </core:FragmentDefinition>
+                        <Image src="{displayUrl}"
+                            class="	sapUi-Std-PaddingXL"
+                            height="250px"
+                            densityAware="false"
+                            alt="Image can not eb displayed." />
+                    </smartForm:GroupElement>
+                    <smartForm:GroupElement>
+                        <Button text="Author Books"
+                            press=".onShowAllBooks"/>
+                    </smartForm:GroupElement>
+                </smartForm:Group>
+            </smartForm:SmartForm>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>

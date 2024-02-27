@@ -65,14 +65,14 @@ annotate service.Books with {
             },
         ]
     };
-    subCategoriID @Common.ValueList: {
+    subCategoryID @Common.ValueList: {
         $Type         : 'Common.ValueListType',
         CollectionPath: 'VHSubCategory',
         SearchSupported,
         Parameters    : [
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: subCategoriID,
+                LocalDataProperty: subCategoryID,
                 ValueListProperty: 'ID'
             },
             {
@@ -83,57 +83,3 @@ annotate service.Books with {
     };
 };
 
-annotate service.VBooks {
-    authorID      @Common.ValueList: {
-        $Type         : 'Common.ValueListType',
-        CollectionPath: 'VHAuthors',
-        SearchSupported,
-        Parameters    : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: authorID,
-                ValueListProperty: 'ID'
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'fullName'
-            }
-        ]
-    };
-    barcodeNumber @Common.ValueList: {
-        $Type         : 'Common.ValueListType',
-        CollectionPath: 'VHBooks',
-        SearchSupported,
-        Parameters    : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: barcodeNumber,
-                ValueListProperty: 'barcodeNumber'
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'name'
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'ID'
-            }
-        ]
-    };
-    languageCode  @Common.ValueList: {
-        $Type         : 'Common.ValueListType',
-        CollectionPath: 'VHLanguage',
-        SearchSupported,
-        Parameters    : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: languageCode,
-                ValueListProperty: 'code'
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'text'
-            },
-        ]
-    };
-}

@@ -2,10 +2,11 @@ using LibraryManagement as service from '../../../srv/data-provider';
 
 annotate service.VBooks @(UI: {
     SelectionFields: [
-        ID,
         name,
-        barcodeNumber,
-        authorID,
+        authorFullName,
+        categoryName,
+        subCategoryName,
+        libraryName,
         languageCode
     ],
     LineItem       : [
@@ -15,7 +16,7 @@ annotate service.VBooks @(UI: {
         },
         {
             $Type: 'UI.DataField',
-            Value: authorID
+            Value: authorFullName
         },
         {
             $Type: 'UI.DataField',
@@ -23,7 +24,15 @@ annotate service.VBooks @(UI: {
         },
         {
             $Type: 'UI.DataField',
-            Value: subCategoriID
+            Value: categoryName
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: subCategoryName
+        },
+        {
+            $Type: 'UI.DataField',
+            Value: libraryName
         }
     ]
 });
@@ -49,7 +58,7 @@ annotate service.VAuthors @(UI: {
         },
         {
             $Type: 'UI.DataField',
-            Value: autoBio            
+            Value: autoBio
         }
     ]
 });

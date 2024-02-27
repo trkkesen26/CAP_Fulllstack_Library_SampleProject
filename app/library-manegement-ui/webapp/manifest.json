@@ -27,6 +27,10 @@
       "visibilitySource": {
         "uri": "./model/visibility.json",
         "type": "JSON"
+      },
+      "globalModelSource": {
+        "uri": "./model/globalModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -81,6 +85,14 @@
       },
       "visibilityModel": {
         "dataSource": "visibilitySource",
+        "preload": true,
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
+      },
+      "globalJSONModel": {
+        "dataSource": "globalModelSource",
         "preload": true,
         "type": "sap.ui.model.json.JSONModel",
         "settings": {

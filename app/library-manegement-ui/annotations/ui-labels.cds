@@ -7,19 +7,23 @@ annotate service.Books with {
     languageCode  @Common.Label: '{i18n>bookLanguage}';
     barcodeNumber @Common.Label: '{i18n>barcodeNumber}';
     authorID      @Common.Label: '{i18n>bookAuthorID}';
-    subCategoriID @Common.Label: '{i18n>subCategoriID}';
+    subCategoryID @Common.Label: '{i18n>subCategoriID}';
     libraryID     @Common.Label: '{i18n>bookLibraryID}';
 };
 
 annotate service.VBooks with {
-    ID            @Common.Label: '{i18n>bookID}';
-    name          @Common.Label: '{i18n>bookName}';
-    editionNumber @Common.Label: '{i18n>editionNumber}';
-    languageCode  @Common.Label: '{i18n>bookLanguage}';
-    barcodeNumber @Common.Label: '{i18n>barcodeNumber}';
-    authorID      @Common.Label: '{i18n>bookAuthorID}';
-    subCategoriID @Common.Label: '{i18n>subCategoriID}';
-    libraryID     @Common.Label: '{i18n>bookLibraryID}';
+    ID              @Common.Label: '{i18n>bookID}';
+    name            @Common.Label: '{i18n>bookName}';
+    editionNumber   @Common.Label: '{i18n>editionNumber}';
+    languageCode    @Common.Label: '{i18n>bookLanguage}';
+    barcodeNumber   @Common.Label: '{i18n>barcodeNumber}';
+    authorID        @Common.Label: '{i18n>bookAuthorID}';
+    subCategoryID   @Common.Label: '{i18n>subCategoriID}';
+    libraryID       @Common.Label: '{i18n>bookLibraryID}';
+    authorFullName  @Common.Label: '{i18n>authorFullName}';
+    libraryName     @Common.Label: '{i18n>libraryName}';
+    categoryName    @Common.Label: '{i18n>categoryName}';
+    subCategoryName @Common.Label: '{i18n>subCategoryName}';
 };
 
 annotate service.VHBooks with {
@@ -29,7 +33,7 @@ annotate service.VHBooks with {
     languageCode  @Common.Label: '{i18n>bookLanguage}';
     barcodeNumber @Common.Label: '{i18n>barcodeNumber}';
     authorID      @Common.Label: '{i18n>bookAuthorID}';
-    subCategoriID @Common.Label: '{i18n>subCategoriID}';
+    subCategoryID @Common.Label: '{i18n>subCategoriID}';
     libraryID     @Common.Label: '{i18n>bookLibraryID}';
 }
 
@@ -45,13 +49,9 @@ annotate service.Authors with {
 
 annotate service.VAuthors with {
     ID         @Common.Label: '{i18n>authorID}';
-    firstName  @Common.Label: '{i18n>firstName}';
-    lastName   @Common.Label: '{i18n>lastName}';
-    image      @Common.Label: '{i18n>image}';
     age        @Common.Label: '{i18n>age}';
     autoBio    @Common.Label: '{i18n>autoBio}';
     isAlive    @Common.Label: '{i18n>isAlive}';
-    authorBook @Common.Label: '{i18n>authorBooks}';
     fullName   @Common.Label: '{i18n>fullName}';
 };
 
@@ -93,7 +93,6 @@ annotate service.BookActivities with {
     pickupDate @Common.Label: '{i18n>pickupDate}';
     returnDate @Common.Label: '{i18n>returnDate}';
     note       @Common.Label: '{i18n>note}';
-    status     @Common.Label: '{i18n>status}';
     bookID     @Common.Label: '{i18n>activeBookID}';
     userMail   @Common.Label: '{i18n>email}';
 };

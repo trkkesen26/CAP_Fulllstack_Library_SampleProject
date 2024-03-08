@@ -106,3 +106,9 @@ annotate service.Languages with {
     code @Common.Label: '{i18n>languageCode}';
     text @Common.Label: '{i18n>languageText}';
 };
+
+annotate service.VLibraries with {
+    ID @Common.Label: '{i18n>libraryID}';
+    placeName @Common.Label: '{i18n>placeName}';
+};
+

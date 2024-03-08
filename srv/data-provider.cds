@@ -64,7 +64,9 @@ service LibraryManagement {
                 age,
                 autoBio,
                 isAlive,
-                authors.firstName || ' ' || authors.lastName as fullName : String(120),
+                IFNULL(authors.firstName || IFNULL(' ' || authors.lastName, ''), IFNULL(authors.lastName, ''))  as fullName : String(120),
                 displayUrl
         };
-}
+    
+    entity VLibraries as select from DBLibraries;
+}  

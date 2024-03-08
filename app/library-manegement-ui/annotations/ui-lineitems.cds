@@ -62,3 +62,17 @@ annotate service.VAuthors @(UI: {
         }
     ]
 });
+
+annotate service.VLibraries @(UI: {
+    SelectionFields: [
+        ID,
+        placeName
+    ],
+    LineItem       : [
+        {
+            $Type: 'UI.DataField',
+            Value: placeName
+        }
+    ]
+});
+

@@ -101,12 +101,29 @@ sap.ui.define([
                     }
                 }
             },
+            onScanSuccessEdit: function (oEvent) {
+                if (oEvent.getParameter("cancelled")) {
+                    MessageToast.show("Scan cancelled", { duration: 1000 });
+                }
+                else {
+                    if (oEvent.getParameter("text")) {
+                        this.getView().byId("smfEditBarcodeNumber").setValue(oEvent.getParameter("text"));
+                    }
+                    else {
+                        oScanResultText.setText('');
+                    }
+                }
+            },
             onCloseDialog: function (oEvent) {
                 let sPath;
 
                 switch (oEvent) {
                     case "_oNewBookDialog":
                         sPath = this.byId("sfNewBook").getBindingContext().getPath();
+                        this.getView().getModel().resetChanges([sPath]);
+                        break;
+                    case "_oEditBookDialog":
+                        sPath = this.byId("sfEditBook").getBindingContext().getPath();
                         this.getView().getModel().resetChanges([sPath]);
                         break;
                     case "_oNewAuthorDialog":
@@ -123,38 +140,38 @@ sap.ui.define([
                     oDialog.close();
                 });
             },
-            preventCloseByEscapeAdd: function () {
+            resetChangesAfterEscBookAdd: function () {
                 let sPath = this.byId("sfNewBook").getBindingContext().getPath();
                 this.getView().getModel().resetChanges([sPath]);
                 this._oNewBookDialog.then(function (oDialog) {
                     oDialog.close();
                 });
             },
-            changeEditted: function () {
-                let oDataModel = this.getView().getModel();
-
-                if (oDataModel.hasPendingChanges()) {
-                    oDataModel.submitChanges();
-                }
+            resetChangesAfterEscBookEdit: function () {
+                let sPath = this.byId("sfEditBook").getBindingContext().getPath();
+                this.getView().getModel().resetChanges([sPath]);
+                this._oEditBookDialog.then(function (oDialog) {
+                    oDialog.close();
+                });
             },
             onDeleteBook: function () {
-                let oUITable = this.getView().byId("uiTblBooks"),
-                    iSelectedIndex = oUITable.getSelectedIndex(),
-                    oModel = this.getView().getModel(),
-                    oBindingContext;
+                let oDataModel = this.getView().getModel(),
+                    oContentTable = this.getView().byId("uiTblBooks"),
+                    oSelectedContentItem = oContentTable.getSelectedItem(),
+                    oSelectedContentItemPath;
 
-                if (iSelectedIndex < 0) {
-                    MessageBox.error(this.getResourceBundle().getText("errorDeletion"));
+                if (!oSelectedContentItem) {
+                    MessageBox.error("Please, select a row to delete!");
                     return;
                 }
 
-                oBindingContext = oUITable.getContextByIndex(iSelectedIndex);
+                oSelectedContentItemPath = oSelectedContentItem.getBindingContext().getPath();
 
-                MessageBox.confirm(this.getResourceBundle().getText("confirmDeletion"), {
-                    title: this.getResourceBundle().getText("confirm"),
+                MessageBox.confirm("Selected entity will be deleted. Do you confirm?", {
+                    title: "Confirmation ?",
                     onClose: function (oEvent) {
                         if (oEvent == "OK") {
-                            oModel.remove(oBindingContext.getPath());
+                            oDataModel.remove(oSelectedContentItemPath);
                         }
                     },
                     styleClass: "",
@@ -162,6 +179,59 @@ sap.ui.define([
                     emphasizedAction: sap.m.MessageBox.Action.OK,
                     initialFocus: null,
                     textDirection: sap.ui.core.TextDirection.Inherit
+                });
+            },
+            onEditBook: function () {
+                let oContentTable = this.getView().byId("uiTblBooks"),
+                    oSelectedItem = oContentTable.getSelectedItem(),
+                    oSelectedObject,
+                    oSelectedItemID,
+                    oView = this.getView();
+
+                if (!oSelectedItem) {
+                    MessageBox.error("Please, select a row to edit content!");
+                    return;
+                }
+
+                oSelectedObject = oSelectedItem.getBindingContext().getObject();
+                oSelectedItemID = oSelectedObject.ID;
+
+                if (!this._oEditBookDialog) {
+                    this._oEditBookDialog = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.ndbs.ui.librarymanegementui.fragments.library-management.BookEditPage",
+                        controller: this
+                    }).then(function (oValueHelpDialog) {
+                        oView.addDependent(oValueHelpDialog);
+                        return oValueHelpDialog;
+                    });
+                }
+                this._oEditBookDialog.then(function (oValueHelpDialog) {
+                    oValueHelpDialog.open();
+                    this.byId("sfEditBook").bindElement(`/Books(${oSelectedItemID})`);
+                }.bind(this));
+            },
+            onSaveBook: function () {
+                let oModel = this.getView().getModel(),
+                    sPath;
+
+                oModel.setUseBatch(true);
+                if (oModel.hasPendingChanges()) {
+                    oModel.submitChanges({
+                        success: function (oResponse) {
+                            this.getView().byId("stBooks").rebindTable();
+                            let sStatusCode = oResponse.__batchResponses[0].response?.statusCode;
+
+                            if (sStatusCode === "400" || sStatusCode === "500" || sStatusCode === "403") {
+                                sPath = this.byId("sfEditBook").getBindingContext().getPath();
+                                oModel.resetChanges([sPath]);
+                            }
+                        }.bind(this)
+                    });
+                }
+
+                this._oEditBookDialog.then(function (oDialog) {
+                    oDialog.close();
                 });
             },
             onCreateAuthor: function () {
@@ -344,6 +414,9 @@ sap.ui.define([
                         }
                     });
                 }
+                this._oEditAuthorDialog.then(function (oDialog) {
+                    oDialog.close();
+                });
             },
             onFileUploadCompleted: function () {
                 this.getView().byId("stAuthors").rebindTable();
@@ -361,7 +434,7 @@ sap.ui.define([
                         return oValueHelpDialog;
                     });
                 }
-                
+
                 this._oShowAuthorDialog.then(function (oValueHelpDialog) {
                     this.byId("slAuthorBooks").bindElement(`/Authors(${this.getView().getModel("globalJSONModel").getProperty("/selectedAuthor")})`);
                     oValueHelpDialog.open();

@@ -83,3 +83,21 @@ annotate service.Books with {
     };
 };
 
+annotate service.VLibraries with {
+    ID @Common.ValueList: {
+        $Type         : 'Common.ValueListType',
+        CollectionPath: 'VHLibrary',
+        SearchSupported,
+        Parameters    : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: ID,
+                ValueListProperty: 'ID'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'placeName'
+            }
+        ]
+    };
+}

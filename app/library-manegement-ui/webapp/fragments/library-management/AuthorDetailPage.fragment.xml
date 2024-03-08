@@ -32,11 +32,15 @@
                             editable="false" />
                     </smartForm:GroupElement>
                     <smartForm:GroupElement>
-                        <Image src="{displayUrl}"
-                            class="	sapUi-Std-PaddingXL"
-                            height="250px"
-                            densityAware="false"
-                            alt="Image can not eb displayed." />
+                        <FlexBox alignItems="Center"
+                            justifyContent="Center">
+                            <items>
+                                <Image src="{displayUrl}"
+                                    height="250px"
+                                    densityAware="false"
+                                    alt="Image cannot be displayed." />
+                            </items>
+                        </FlexBox >
                     </smartForm:GroupElement>
                     <smartForm:GroupElement>
                         <Button text="Author Books"

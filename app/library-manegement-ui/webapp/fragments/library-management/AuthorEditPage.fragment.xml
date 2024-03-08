@@ -49,7 +49,7 @@
             </smartForm:SmartForm>
         </content>
         <beginButton>
-            <Button text="{i18n>create}"
+            <Button text="{i18n>save}"
                 press="onSaveEditAuthor"/>
         </beginButton>
         <endButton>

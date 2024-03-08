@@ -24,6 +24,7 @@
         <FlexBox justifyContent="Center"
             alignItems="Center">
             <VBox width="95%">
+                <!-- Books Smart Table Definations -->
                 <smartFilterBar:SmartFilterBar id="sfbBooks"
                     entitySet="VBooks"
                     useProvidedNavigationProperties="true"
@@ -31,7 +32,7 @@
                 <smartTable:SmartTable id="stBooks"
                     entitySet="VBooks"
                     smartFilterId="sfbBooks"
-                    tableType="Table"
+                    tableType="ResponsiveTable"
                     enableExport="true"
                     enableAutoBinding="true"
                     useVariantManagement="true"
@@ -40,9 +41,7 @@
                     header="{i18n>booksTable}"
                     showRowCount="true"
                     enableAutoColumnWidth="true"
-                    editTogglable="true"
-                    app:useSmartToggle="true"
-                    editToggled=".changeEditted">
+                    editTogglable="false">
                     <smartTable:customToolbar>
                         <OverflowToolbar design="Transparent">
                             <ToolbarSpacer/>
@@ -50,12 +49,15 @@
                                 press=".onCreateBook"/>
                             <OverflowToolbarButton icon="sap-icon://delete"
                                 press=".onDeleteBook"/>
+                            <OverflowToolbarButton icon="sap-icon://edit"
+                                press=".onEditBook"/>
                         </OverflowToolbar>
                     </smartTable:customToolbar>
                     <Table id="uiTblBooks"
                         mode="SingleSelectMaster"
                         alternateRowColors="true"/>
                 </smartTable:SmartTable>
+                <!-- Authors Smart Table Definations -->
                 <smartFilterBar:SmartFilterBar id="sfbAuthors"
                     class="sapUiMediumMarginTop"
                     entitySet="VAuthors"
@@ -85,6 +87,39 @@
                         </OverflowToolbar>
                     </smartTable:customToolbar>
                     <Table id="uiTblAuthors"
+                        mode="SingleSelectMaster"
+                        alternateRowColors="true"/>
+                </smartTable:SmartTable>
+                <!-- Libraries Smart Table Definations -->
+                <smartFilterBar:SmartFilterBar id="sfbLibraries"
+                    class="sapUiMediumMarginTop"
+                    entitySet="VLibraries"
+                    useProvidedNavigationProperties="true"
+                    enableBasicSearch="true"/>
+                <smartTable:SmartTable id="stLibraries"
+                    entitySet="VLibraries"
+                    smartFilterId="sfbLibraries"
+                    tableType="Table"
+                    enableExport="true"
+                    enableAutoBinding="true"
+                    useVariantManagement="true"
+                    useTablePersonalisation="true"
+                    showFullScreenButton="true"
+                    header="{i18n>libraryTable}"
+                    showRowCount="true"
+                    enableAutoColumnWidth="true">
+                    <smartTable:customToolbar>
+                        <OverflowToolbar design="Transparent">
+                            <ToolbarSpacer/>
+                            <OverflowToolbarButton icon="sap-icon://add"
+                                press=".onCreateLibrary"/>
+                            <OverflowToolbarButton icon="sap-icon://delete"
+                                press=".onDeleteLibrary"/>
+                            <OverflowToolbarButton icon="sap-icon://edit"
+                                press=".onEditLibrary"/>
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+                    <Table id="uiTblLibraries"
                         mode="SingleSelectMaster"
                         alternateRowColors="true"/>
                 </smartTable:SmartTable>
